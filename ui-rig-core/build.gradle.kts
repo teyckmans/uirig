@@ -2,9 +2,10 @@ import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.BintrayUploadTask
 import com.jfrog.bintray.gradle.BintrayPlugin
 import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    val kotlinVersion = "1.2.61"
+    val kotlinVersion = "1.3.0-rc-80"
 
     repositories {
         jcenter()
@@ -18,7 +19,6 @@ buildscript {
 plugins {
     java
 //    id("com.jfrog.bintray") version "1.8.0"
-    maven
     `maven-publish`
 }
 plugins.apply(BintrayPlugin::class.java)
@@ -27,17 +27,18 @@ apply {
     plugin("kotlin2js")
 }
 
-val releaseVersion by project
+val releaseVersion : String by project
 
 group = "eu.rigeldev.uirig"
-version = releaseVersion as String
+version = releaseVersion
 
 repositories {
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
     jcenter()
 }
 
 dependencies {
-    val kotlinVersion = "1.2.61"
+    val kotlinVersion = "1.3.0-rc-80"
 
     compile ("org.jetbrains.kotlin:kotlin-stdlib-js:$kotlinVersion")
 }
@@ -48,6 +49,7 @@ tasks {
             metaInfo = true
             sourceMap = true
             moduleKind = "commonjs"
+            freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
         }
     }
     "jar"(Jar::class) {
@@ -62,22 +64,22 @@ tasks {
 
 
 publishing {
-    (publications) {
-        "UiRigCorePublication"(MavenPublication::class) {
+    publications {
+        register("UiRigCorePublication", MavenPublication::class) {
             from(components["java"])
             groupId = project.group as String
-            artifactId = project.name as String
+            artifactId = project.name
             version = project.version as String
         }
     }
 }
 
-val bintrayUser by project
-val bintrayApiKey by project
+val bintrayUser : String by project
+val bintrayApiKey : String by project
 
 configure<BintrayExtension> {
-    user = bintrayUser as String
-    key = bintrayApiKey as String
+    user = bintrayUser
+    key = bintrayApiKey
     publications.add("UiRigCorePublication")
     publish = true
 

@@ -12,7 +12,7 @@ open class WebPackExtension(project: Project) : BundleConfig {
         get() = "webpack"
 
     @Input
-    override var bundleName = project.name!!
+    override var bundleName = project.name
 
     @Input
     override var sourceMapEnabled: Boolean = project.frontendExtension.sourceMaps

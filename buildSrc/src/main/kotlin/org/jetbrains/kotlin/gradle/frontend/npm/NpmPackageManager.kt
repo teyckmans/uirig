@@ -69,7 +69,7 @@ class NpmPackageManager(val project: Project) : PackageManager {
 
     private fun defineTasks() {
         if (!tasksDefined) {
-            val npm = project.extensions.getByType(NpmExtension::class.java)!!
+            val npm = project.extensions.getByType(NpmExtension::class.java)
 
             if (npm.dependencies.isNotEmpty() || npm.developmentDependencies.isNotEmpty() || project.projectDir.resolve("package.json.d").exists() || requiredDependencies.isNotEmpty()) {
 
@@ -97,7 +97,7 @@ class NpmPackageManager(val project: Project) : PackageManager {
                     task.group = NpmGroup
                 }
 
-                project.tasks.withType(NodeJsDownloadTask::class.java)?.let { configure.dependsOn(it) }
+                project.tasks.withType(NodeJsDownloadTask::class.java).let { configure.dependsOn(it) }
                 configure.dependsOn(unpack)
                 install.dependsOn(configure)
                 index.dependsOn(install)

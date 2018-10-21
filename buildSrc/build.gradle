@@ -1,8 +1,12 @@
 buildscript {
-    def kotlinVersion = "1.2.61"
+    def kotlinVersion = "1.3.0-rc-80"
 
     repositories {
         jcenter()
+        maven{
+            url = "https://dl.bintray.com/kotlin/kotlin-eap"
+        }
+
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
@@ -14,6 +18,9 @@ apply plugin: 'kotlin'
 
 repositories {
     jcenter()
+    maven{
+        url = "https://dl.bintray.com/kotlin/kotlin-eap"
+    }
 }
 
 dependencies {
@@ -23,7 +30,7 @@ dependencies {
     }
     compile('org.apache.maven:maven-ant-tasks:2.1.3')
 
-    def kotlinVersion = "1.2.61"
+    def kotlinVersion = "1.3.0-rc-80"
 
     compile "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -31,6 +38,6 @@ dependencies {
 }
 
 compileGroovy {
-    sourceCompatibility = '1.6'
-    targetCompatibility = '1.6'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
 }

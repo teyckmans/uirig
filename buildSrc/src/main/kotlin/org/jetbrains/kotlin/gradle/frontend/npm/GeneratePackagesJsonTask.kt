@@ -33,7 +33,7 @@ open class GeneratePackagesJsonTask : DefaultTask() {
     val configPartsDir = project.projectDir.resolve("package.json.d")
 
     @Internal
-    private val npm = project.extensions.getByType(NpmExtension::class.java)!!
+    private val npm = project.extensions.getByType(NpmExtension::class.java)
 
     @get:Input
     @Suppress("unused")

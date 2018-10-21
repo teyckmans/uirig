@@ -9,17 +9,15 @@ import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
 
 buildscript {
-    val kotlinVersion = "1.2.61"
-    val serializationVersion = "0.6.1"
+    val kotlinVersion = "1.3.0-rc-80"
 
     repositories {
         jcenter()
         maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
-        maven(url = "https://kotlin.bintray.com/kotlinx")
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-        classpath("org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:$serializationVersion")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion")
     }
 }
 
@@ -38,13 +36,13 @@ plugins.apply(FrontendPlugin::class.java)
 
 repositories {
     jcenter()
+    maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
     maven(url = "https://kotlin.bintray.com/kotlinx")
-    maven(url = "https://dl.bintray.com/gbaldeck/kotlin")
     maven(url = "https://dl.bintray.com/teyckmans/rigeldev-oss-maven")
 }
 
-val kotlinVersion = "1.2.61"
-val serializationVersion = "0.6.1"
+val kotlinVersion = "1.3.0-rc-80"
+val serializationVersion = "0.8.3-rc13"
 
 dependencies {
     compile(project(":ui-rig-core"))

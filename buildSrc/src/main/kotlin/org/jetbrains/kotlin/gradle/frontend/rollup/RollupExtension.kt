@@ -10,7 +10,7 @@ open class RollupExtension(project: Project) : BundleConfig {
     override val bundlerId = "rollup"
 
     @Input
-    override var bundleName = project.name!!
+    override var bundleName = project.name
 
     @Input
     override val sourceMapEnabled: Boolean = project.frontendExtension.sourceMaps

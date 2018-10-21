@@ -161,7 +161,7 @@ class FrontendPlugin : Plugin<Project> {
             }
 
             override fun buildFinished(result: BuildResult) {
-                if (resolutionTriggered && result.failure == null && project.gradle.taskGraph == null) {
+                if (resolutionTriggered && result.failure == null) {
                     managers.forEach { m ->
                         m.install(project)
                     }

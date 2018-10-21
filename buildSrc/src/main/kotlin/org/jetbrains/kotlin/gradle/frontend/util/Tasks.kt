@@ -9,7 +9,7 @@ inline fun <reified T : Task> Project.withTask(noinline block: (T) -> Unit) = wi
 fun <T : Task> Project.withTask(type: KClass<T>, block: (T) -> Unit) {
     val javaType = type.java
     val existing = project.tasks.withType(javaType)
-    existing?.forEach { task ->
+    existing.forEach { task ->
         block(task)
     }
 

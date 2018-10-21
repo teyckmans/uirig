@@ -12,7 +12,7 @@ open class KarmaStartStopTask : AbstractStartStopTask<Int>() {
         get() = project.frontendExtension.sourceMaps
 
     @get:Nested
-    val extension by lazy { project.extensions.getByType(KarmaExtension::class.java)!! }
+    val extension by lazy { project.extensions.getByType(KarmaExtension::class.java) }
 
     @Input
     var start: Boolean = false
